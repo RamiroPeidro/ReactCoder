@@ -1,21 +1,22 @@
 import logo from './logo.svg';
+import python from './python.svg';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={python} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Contacto <code>en Linkedin</code>.
         </p>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://github.com/RamiroPeidro"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Ramiro Peidro GitHub personal
         </a>
       </header>
     </div>
