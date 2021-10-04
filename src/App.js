@@ -1,24 +1,13 @@
-import logo from './logo.svg';
-import python from './python.svg';
 import './App.css';
+import { ItemListContainer } from './components/ItemListContainer/ItemListContainer';
+import { NavBar } from './components/NavBar/NavBar';
 
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={python} className="App-logo" alt="logo" />
-        <p>
-          Contacto <code>en Linkedin</code>.
-        </p>
-        <a
-          className="App-link"
-          href="https://github.com/RamiroPeidro"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Ramiro Peidro GitHub personal
-        </a>
-      </header>
+      <NavBar brandName="B.O" link1 = "Catalogo" link2 = "About Us" link3="SS22'"/>
+      <ItemListContainer greeting="Bienvenidos"/>
     </div>
   );
 }
