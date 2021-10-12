@@ -6,7 +6,7 @@ export const pedirProductos = () => {
         //para simular la llamada (el delay)
         setTimeout(() => {
             resolve(stock);
-        }, 0);
+        }, 2000);
     })
 
 }
