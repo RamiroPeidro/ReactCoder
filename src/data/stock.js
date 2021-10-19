@@ -38,7 +38,7 @@ export const stock = [
     },
     {
         id: 6,
-        name: "Basic Impressive",
+        name: "Basic Classic",
         description: "Relaxed fit",
         price: 10500,
         img: "https://images.unsplash.com/photo-1617171594207-430a01a9da3f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"

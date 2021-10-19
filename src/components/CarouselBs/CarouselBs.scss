@@ -14,17 +14,14 @@
 
 .imagen1{
     @extend .imagenesCarousell; 
-    background-image: url("https://images.unsplash.com/photo-1570967108084-7aacf8184ca8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
 }
 
 .imagen2{
     @extend .imagenesCarousell; 
-    background-image: url("https://images.unsplash.com/photo-1557600067-173369923ba5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80");
 }
 
 .imagen3{
     @extend .imagenesCarousell; 
-    background-image: url("https://images.unsplash.com/photo-1605033272404-1c2874375ef4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
 }
 
 .carousel-tittle{
@@ -32,4 +29,10 @@
     font-size:4rem;
     position: relative;
     top: -34.2vh;
+}
+
+@media (max-width: 768px){
+    .carousel-tittle{
+        font-size:2.8rem;
+    }
 }

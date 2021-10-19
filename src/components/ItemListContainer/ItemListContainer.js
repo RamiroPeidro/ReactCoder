@@ -1,19 +1,21 @@
 import { CircularProgress } from '@mui/material';
 import React, { useEffect, useState} from 'react'
+import { useParams } from 'react-router';
 import { pedirProductos } from '../../helpers/pedirProductos';
 import { ItemList } from './ItemList';
 import './ItemListContainer.scss'
 
 
 
-export const ItemListContainer = ({greeting}) => {
+export const ItemListContainer = () => {
 
     const [items, setItems] = useState([])
-    const [loading, setLoading] = useState(false);
-    
-    
+    const [loading, setLoading] = useState(true);
+
+    const params = useParams()
+    console.log(params)
     useEffect(()=> {
-        setLoading(true);
+        setLoading(false);
 
         //mock llamado a la api
         pedirProductos()
@@ -24,13 +26,13 @@ export const ItemListContainer = ({greeting}) => {
                 console.log(err);
             })
             .finally(()=>{
-                setLoading(false);
+                setLoading(true);
             })
     }, [])
 
     return (
         <section className="container my-5">
-            {loading ? <CircularProgress />: <ItemList items={items}/>}
+            {!loading ? <CircularProgress />: <ItemList items={items}/>}
         </section>
        
     )

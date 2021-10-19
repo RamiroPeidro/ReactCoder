@@ -5,8 +5,9 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
 
-export default function Item({name, description, price, button, img}) {
+export default function Item({name, description, price, button, img, id}) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -25,7 +26,9 @@ export default function Item({name, description, price, button, img}) {
       </CardContent>
       <CardActions>
         <Button size="small">{"$" + price}</Button>
-        <Button size="small">{button}</Button>
+        <Link className="link-details" exact to={`details/${id}`}> 
+          <Button size="small">{button}</Button>
+        </Link>
       </CardActions>
     </Card>
   );
