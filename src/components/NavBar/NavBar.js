@@ -1,8 +1,9 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import './NavBar.scss'
 import { FaOpencart } from "react-icons/fa";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
 import { Link, NavLink } from 'react-router-dom';
+import { MiContext } from '../../context/MiContext';
 
 
 
@@ -14,6 +15,7 @@ export const NavBar = ({logo, link1, link2, link3, ruta1, ruta2, ruta3}) => {
         setMenu(!menu);
     }
     
+    const { calcularCantidad } = useContext(MiContext);
     
     return (
             <header>
@@ -29,7 +31,7 @@ export const NavBar = ({logo, link1, link2, link3, ruta1, ruta2, ruta3}) => {
                         <li className="nav-item"> <NavLink exact to={ruta1} className ="nav-link" activeClassName={'activeLink'}> {link1}</NavLink> </li>
                         <li className="nav-item"> <NavLink exact to={ruta2} className ="nav-link" activeClassName={'activeLink'}> {link2}</NavLink> </li>
                         <li className="nav-item"> <NavLink exact to={ruta3} className ="nav-link" activeClassName={'activeLink'}> {link3}</NavLink> </li>
-                        <FaOpencart id="cart-toggle"/>
+                        <Link to="/cart"> <FaOpencart id="cart-toggle"/></Link>
                     </ul>
 
                 </nav>

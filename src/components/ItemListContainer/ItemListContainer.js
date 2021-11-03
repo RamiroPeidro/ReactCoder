@@ -31,8 +31,8 @@ export const ItemListContainer = () => {
     }, [])
 
     return (
-        <section className="container my-5">
-            {!loading ? <CircularProgress />: <ItemList items={items}/>}
+        <section className="container">
+            {!loading ? <CircularProgress className="progress" />: <ItemList items={items}/>}
         </section>
        
     )

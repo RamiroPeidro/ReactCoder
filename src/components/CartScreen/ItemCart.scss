@@ -1,0 +1,17 @@
+.down{
+    display: flex;
+    width: 80%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.imagenCart{
+    padding: 10px 0 0 10px;
+}
+
+@media (max-width: 768px){
+    .down{
+        width: 100%;
+        flex-direction: column;
+    }
+}

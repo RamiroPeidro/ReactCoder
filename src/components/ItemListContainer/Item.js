@@ -25,7 +25,7 @@ export default function Item({name, description, price, button, img, id}) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">{"$" + price}</Button>
+        <Typography className="mx-2">${price}</Typography>
         <Link className="link-details" exact to={`details/${id}`}> 
           <Button size="small">{button}</Button>
         </Link>
