@@ -6,9 +6,10 @@ import { CarouselBs } from './components/CarouselBs/CarouselBs';
 import { ItemListContainer } from './components/ItemListContainer/ItemListContainer';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { ItemDetailContainer } from './components/ItemDetailContainer/ItemDetailContainer';
-import { CartProvider, MiContext } from './context/MiContext';
-import { useState } from 'react';
+import { CartProvider } from './context/MiContext';
+//import { useState } from 'react';
 import { CartScreen } from './components/CartScreen/CartScreen';
+import { ItemUi } from './components/ItemListContainer/ItemUi';
 
 
 
@@ -26,6 +27,7 @@ function App() {
           <Switch>
             <Route exact path="/">
               <CarouselBs tit1="Simplicity." tit2="Comfort." tit3="Know us." img1="https://images.unsplash.com/photo-1570967108084-7aacf8184ca8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" img2="https://images.unsplash.com/photo-1557600067-173369923ba5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80" img3="https://images.unsplash.com/photo-1605033272404-1c2874375ef4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"/>
+              
             </Route>
 
             <Route exact path="/details/:itemId">

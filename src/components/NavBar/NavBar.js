@@ -1,9 +1,10 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './NavBar.scss'
 import { FaOpencart } from "react-icons/fa";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
 import { Link, NavLink } from 'react-router-dom';
 import { MiContext } from '../../context/MiContext';
+// import { CartWidget } from './CartWidget';
 
 
 
@@ -15,8 +16,9 @@ export const NavBar = ({logo, link1, link2, link3, ruta1, ruta2, ruta3}) => {
         setMenu(!menu);
     }
     
-    const { calcularCantidad } = useContext(MiContext);
-    
+    const { calcularCantidad, amountOfItems } = useContext(MiContext);
+    console.log(calcularCantidad);
+
     return (
             <header>
                 <div className="logo">
@@ -31,12 +33,22 @@ export const NavBar = ({logo, link1, link2, link3, ruta1, ruta2, ruta3}) => {
                         <li className="nav-item"> <NavLink exact to={ruta1} className ="nav-link" activeClassName={'activeLink'}> {link1}</NavLink> </li>
                         <li className="nav-item"> <NavLink exact to={ruta2} className ="nav-link" activeClassName={'activeLink'}> {link2}</NavLink> </li>
                         <li className="nav-item"> <NavLink exact to={ruta3} className ="nav-link" activeClassName={'activeLink'}> {link3}</NavLink> </li>
-                        <Link to="/cart"> <FaOpencart id="cart-toggle"/></Link>
+                        <Link to="/cart"> 
+                            <FaOpencart id="cart-toggle"/>
+                            <span id="cart-toggle-count">{amountOfItems()}</span>
+                        </Link>
                     </ul>
 
                 </nav>
-
-                <Link to="/cart"> <FaOpencart id="cart-menu"/> </Link>
+                <div style={{
+                    display: amountOfItems() > 0 ? 'block' : 'none'
+                }}>
+                    <Link to="/cart"> 
+                        <FaOpencart id="cart-menu"/> 
+                        <span id="cart-menu-count">{amountOfItems()}</span>
+                    </Link>
+                </div>
+                
                 
                 <IoMdMenu id="header-toggle" onClick={handleMenuOnClick}/>
             </header>
@@ -45,9 +57,3 @@ export const NavBar = ({logo, link1, link2, link3, ruta1, ruta2, ruta3}) => {
 }
 
 
-
-
-
-// let cerrarMenu = () => {
-//     navMenu.classList.remove("show");
-// }

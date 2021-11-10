@@ -5,6 +5,7 @@ import { MiContext } from '../../context/MiContext'
 import { CarouselBs } from '../CarouselBs/CarouselBs'
 import { ItemCount } from '../ItemCount/ItemCount'
 import './ItemDetail.scss'
+import Swal from 'sweetalert2'
 
 export const ItemDetail = ({name, description, price, button, img, img2, img3, stock, id}) => {
      
@@ -14,8 +15,7 @@ export const ItemDetail = ({name, description, price, button, img, img2, img3, s
 
     const {addToCart, isInCart} = useContext(MiContext)
 
-
-
+    
     const handleAgregar = () => {
         const newItem = {
             name,
@@ -28,6 +28,19 @@ export const ItemDetail = ({name, description, price, button, img, img2, img3, s
 
         if(amount > 0){
             addToCart(newItem)
+            Swal.fire({
+                title: 'Elemento agregado!',
+                text: 'Continúa comprando',
+                icon: 'success',
+                confirmButtonText: 'Continuar'
+              })
+        } else{
+            Swal.fire({
+                title: 'Error',
+                text: 'Elija una cantidad',
+                icon: 'error',
+                confirmButtonText: 'Continuar'
+              })
         }
     }
 
@@ -41,8 +54,9 @@ export const ItemDetail = ({name, description, price, button, img, img2, img3, s
                 <div className="contenedor-info" style={{backgroundImage: `url(${img})`}}>
                     <h2>{name}</h2>
                     <p>{description}</p>
-                    <ItemCount amount={amount} setAmount={setAmount} limite={stock}/>
-
+                    <div className={isInCart(id) && "desactivado"}>
+                        <ItemCount amount={amount} setAmount={setAmount} limite={stock}/>
+                    </div>
                     {
                     isInCart(id) 
                     ? <Link to="/cart" className="btn btn-success">Ir al carrito</Link>

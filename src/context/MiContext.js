@@ -30,7 +30,7 @@ export const CartProvider = ({children}) => {
     }
   
     const amountOfItems = () => {
-      return carrito.reduce((acc, item) => acc + item.stock, 0);
+      return carrito.reduce((acc, item) => acc + item.amount, 0);
     }
   
 

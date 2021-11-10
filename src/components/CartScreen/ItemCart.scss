@@ -9,9 +9,25 @@
     padding: 10px 0 0 10px;
 }
 
+
+.parrafo-vacia{
+    position: absolute;
+    z-index: 999;
+    top: 64%;
+    left: 44%;
+    font-weight: bold;
+}
+
+
 @media (max-width: 768px){
     .down{
         width: 100%;
         flex-direction: column;
     }
+
+    .parrafo-vacia{
+        top: 34%;
+        left: 22%;
+    }
+
 }

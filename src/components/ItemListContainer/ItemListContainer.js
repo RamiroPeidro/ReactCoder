@@ -1,6 +1,6 @@
 import { CircularProgress } from '@mui/material';
 import React, { useEffect, useState} from 'react'
-import { useParams } from 'react-router';
+//import { useParams } from 'react-router';
 import { pedirProductos } from '../../helpers/pedirProductos';
 import { ItemList } from './ItemList';
 import './ItemListContainer.scss'
@@ -12,8 +12,8 @@ export const ItemListContainer = () => {
     const [items, setItems] = useState([])
     const [loading, setLoading] = useState(true);
 
-    const params = useParams()
-    console.log(params)
+    //const params = useParams()
+
     useEffect(()=> {
         setLoading(false);
 

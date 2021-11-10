@@ -27,9 +27,10 @@ export const ItemDetailContainer = () => {
     return (
         <div>
             {
-                loading ? <CircularProgress /> : 
+                loading ? <CircularProgress className="progress"/> : 
                 <ItemDetail {...item}/>
             }
         </div>
+        
     )
 }

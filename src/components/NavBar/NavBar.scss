@@ -50,8 +50,22 @@ header{
         }
     }
 
-    #header-close, #header-toggle, #cart-toggle{
+    #header-close, #header-toggle, #cart-toggle, #cart-toggle-count{
         display: none;
+    }
+
+    #cart-menu-count{
+        padding-left: 20px;
+        text-decoration: none;
+    }
+
+    .ocultarMobile{
+        display: none;
+    }
+
+    .nav-desktop{
+        padding-left: 300px;
+        padding-top: 10px;
     }
 
 
@@ -68,7 +82,7 @@ header{
             }
         }
         
-        #cart-menu{
+        #cart-menu, #cart-menu-count{
             display: none;
         }
 
