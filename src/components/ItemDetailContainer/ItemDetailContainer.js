@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { CircularProgress } from '@mui/material';
 import { useParams } from 'react-router';
 import { ItemDetail } from './ItemDetail';
-import { pedirProductos } from '../../helpers/pedirProductos';
+// import { pedirProductos } from '../../helpers/pedirProductos';
+import { getFirestore } from '../../firebase/config';
 
 
 export const ItemDetailContainer = () => {
@@ -14,16 +15,26 @@ export const ItemDetailContainer = () => {
 
     useEffect(() => {
         setLoading(true);
-        pedirProductos()
-        .then((res) =>{
-            setItem(res.find( prod => prod.id === Number(itemId)) )
-        })
-        .finally(() => {
-            setLoading(false);
-        })
+        
+        const db = getFirestore();
+        const stockRef = db.collection('stock');
+        const item = stockRef.doc(itemId);
 
-    }, [itemId]);
 
+        item.get()
+        
+            .then((doc) =>{
+                setItem({
+                    id: doc.id, ...doc.data()
+                })
+            })
+            .finally(() => {
+                setLoading(false);
+            })
+
+    }, [itemId, setLoading]);
+
+    console.log(item, "el item es")
     return (
         <div>
             {

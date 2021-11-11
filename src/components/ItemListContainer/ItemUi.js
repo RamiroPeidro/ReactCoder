@@ -98,7 +98,7 @@ export const ItemUi = ({name, description, price, button, img, id}) => {
     const rotateX = useTransform(y, [-100, 100], [30, -30]);
     const rotateY = useTransform(x, [-100, 100], [30, -30]);
 
-
+    console.log(img)
     return (
         <CardWrapper>
             <CardContainer 
@@ -107,7 +107,7 @@ export const ItemUi = ({name, description, price, button, img, id}) => {
                 dragConstraints={{top :0, left :0, bottom :0, right :0}}
                 whileTap={{ cursor : "grabbing"}}
             >
-
+                
                 <TopContainer>
                     <CircleWrapper>
                         <Circle/>
@@ -119,7 +119,7 @@ export const ItemUi = ({name, description, price, button, img, id}) => {
                             dragElastic={0.12}
                             whileTap={{ cursor : "grabbing"}}
                         >
-                            <img src={img} alt=""/>
+                            <img src={img} alt="zapatilla"/>
                         </Shoes>
                     </ShoesWrapper>
                     <NikeText>{name}</NikeText>
@@ -131,3 +131,5 @@ export const ItemUi = ({name, description, price, button, img, id}) => {
         </CardWrapper>
     )
 }
+
+

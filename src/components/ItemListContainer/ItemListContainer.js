@@ -1,7 +1,8 @@
 import { CircularProgress } from '@mui/material';
 import React, { useEffect, useState} from 'react'
+import { useParams } from 'react-router';
+import { getFirestore } from '../../firebase/config';
 //import { useParams } from 'react-router';
-import { pedirProductos } from '../../helpers/pedirProductos';
 import { ItemList } from './ItemList';
 import './ItemListContainer.scss'
 
@@ -12,28 +13,39 @@ export const ItemListContainer = () => {
     const [items, setItems] = useState([])
     const [loading, setLoading] = useState(true);
 
-    //const params = useParams()
+    const {categoryId} = useParams()
+
+    console.log(categoryId)
 
     useEffect(()=> {
-        setLoading(false);
+        const db = getFirestore();
+        //const stockRef = db.collection('stock');
+        const stockRef = categoryId ? db.collection('stock').where('description', '==', categoryId) : db.collection('stock');
 
-        //mock llamado a la api
-        pedirProductos()
-            .then((res)=> {
-                setItems(res);
+        stockRef.get()
+
+            .then((response) => {
+                const newItems = response.docs.map((doc) => {
+                    return {id: doc.id, ...doc.data()}
+                })        
+                setItems(newItems)
             })
-            .catch((err)=> {
-                console.log(err);
+            .catch((error) => {
+                console.log(error)
             })
-            .finally(()=>{
+            .finally(() => {
                 setLoading(true);
             })
-    }, [])
+        
 
-    return (
-        <section className="container">
+        }, [setLoading, categoryId])
+
+        
+        return (
+            <section className="container">
             {!loading ? <CircularProgress className="progress" />: <ItemList items={items}/>}
         </section>
        
-    )
-}
+       )
+    }
+
