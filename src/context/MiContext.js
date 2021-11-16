@@ -10,8 +10,8 @@ export const CartProvider = ({children}) => {
     const [carrito, setCarrito] = useState(initialState);
   
     const addToCart = (item) => {
-      console.log(item)
       setCarrito([...carrito, item]);
+      console.log(carrito);
       localStorage.setItem('cart', JSON.stringify(carrito));
     }
   

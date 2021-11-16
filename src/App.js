@@ -9,6 +9,7 @@ import { ItemDetailContainer } from './components/ItemDetailContainer/ItemDetail
 import { CartProvider } from './context/MiContext';
 //import { useState } from 'react';
 import { CartScreen } from './components/CartScreen/CartScreen';
+import Checkout from './components/Checkout/Checkout';
 // import { ItemUi } from './components/ItemListContainer/ItemUi';
 
 
@@ -44,6 +45,10 @@ function App() {
 
             <Route exact path="/cart">
               <CartScreen />
+            </Route>
+            
+            <Route exact path="/checkout">
+              <Checkout/>
             </Route>
 
             <Route path="*">

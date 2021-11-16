@@ -30,7 +30,7 @@ export const CartScreen = () => {
                     <div className="col-md-12">
                         <h3>Total: ${carrito.reduce( (total, product) => total + product.price * product.amount, 0)}</h3>
                         <button className="btn btn-danger mx-3 my-3" onClick={removeAllFromCart}>Eliminar todo</button>
-                        <Link to="/buy"> <button className="btn btn-primary">Finalizar compra</button> </Link>
+                        <Link to="/checkout"> <button className="btn btn-primary">Finalizar compra</button> </Link>
                     </div>
                 </div>
             </>
