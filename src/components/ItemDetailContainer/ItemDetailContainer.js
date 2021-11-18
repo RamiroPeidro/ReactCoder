@@ -34,7 +34,6 @@ export const ItemDetailContainer = () => {
 
     }, [itemId, setLoading]);
 
-    console.log(item, "el item es")
     return (
         <div>
             {

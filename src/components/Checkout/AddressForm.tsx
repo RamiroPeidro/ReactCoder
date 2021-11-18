@@ -6,6 +6,23 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
 export default function AddressForm() {
+
+  const [values, setValues] = React.useState({
+    nombre: '',
+    apellido: '',
+    email: '',
+    tel: ''
+  })
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const orden = {
+      buyer: {
+        ...values;
+      }
+    }
+  }
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>

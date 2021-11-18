@@ -5,7 +5,9 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
-export default function AddressForm() {
+export default function AddressForm({values, setValues}) {
+
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -14,14 +16,16 @@ export default function AddressForm() {
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField
-            required
+            required = {true}
             id="firstName"
             name="firstName"
             label="Nombre"
             fullWidth
             autoComplete="given-name"
             variant="standard"
+            onChange={(e) => setValues({ ...values, firstName: e.target.value })}
           />
+          {values.firstName.length === 0 && <small>Este campo es obligatorio</small>}
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -32,6 +36,7 @@ export default function AddressForm() {
             fullWidth
             autoComplete="family-name"
             variant="standard"
+            onChange={(e) => setValues({ ...values, lastName: e.target.value })}
           />
         </Grid>
         <Grid item xs={12}>
@@ -43,6 +48,7 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping address-line1"
             variant="standard"
+            onChange={(e) => setValues({ ...values, address: e.target.value })}
           />
         </Grid>
         <Grid item xs={12}>
@@ -64,6 +70,7 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping address-level2"
             variant="standard"
+            onChange={(e) => setValues({ ...values, city: e.target.value })}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -73,6 +80,7 @@ export default function AddressForm() {
             label="Localidad"
             fullWidth
             variant="standard"
+            onChange={(e) => setValues({ ...values, state: e.target.value })}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -84,6 +92,7 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping postal-code"
             variant="standard"
+            onChange={(e) => setValues({ ...values, zip: e.target.value })}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -95,6 +104,7 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping country"
             variant="standard"
+            onChange={(e) => setValues({ ...values, country: e.target.value })}
           />
         </Grid>
         <Grid item xs={12}>

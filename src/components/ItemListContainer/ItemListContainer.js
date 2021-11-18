@@ -15,11 +15,9 @@ export const ItemListContainer = () => {
 
     const {categoryId} = useParams()
 
-    console.log(categoryId)
 
     useEffect(()=> {
         const db = getFirestore();
-        //const stockRef = db.collection('stock');
         const stockRef = categoryId ? db.collection('stock').where('description', '==', categoryId) : db.collection('stock');
 
         stockRef.get()
