@@ -68,8 +68,6 @@ export default function Checkout() {
 
   const [orden, setOrden] = React.useState(); 
 
-  const [hayStock, setHayStock] = React.useState(false);
-
   const handleError = (err) => {
     Swal.fire({
       icon: 'error',
@@ -79,6 +77,7 @@ export default function Checkout() {
   }
 
   const handleSubmit = (e) => {
+    e.preventDefault();
 
     setOrden({
       buyer: {
@@ -92,19 +91,18 @@ export default function Checkout() {
     const db = getFirestore();
     const orders = db.collection('orders');
 
-
     carrito.forEach(item => {
       const dockRef = db.collection('stock').doc(item.id);
 
       dockRef.get()
       .then((doc) => {
-          if(doc.data().stock >= item.cantidad){
-            setHayStock(true);
+          if(doc.data().stock >= item.amount){
             dockRef.update({
               stock: doc.data().stock - item.amount
             })
+
+
         } else {
-          setHayStock(false);
 
           Swal.fire({
             title: 'Ooops..',
@@ -115,22 +113,13 @@ export default function Checkout() {
           }).then((result) => {
             if (result.isConfirmed) {
               window.location.href = '/';
+              removeAllFromCart();
             }
-          })
-
-          // Swal.fire({
-          //   icon: 'error',
-          //   title: 'Oops...',
-          //   text: 'No hay suficiente stock',
-          // })
-          // removeAllFromCart();
-          
+          })          
         }
       }) 
     })
 
-
-    if(hayStock){
 
     orders.add(orden)
       .then((res) => {
@@ -146,10 +135,8 @@ export default function Checkout() {
 
       .finally(() => {
         removeAllFromCart();
+        setActiveStep(activeStep + 1);
       })
-    }
-
-
   }
 
   function getStepContent(step) {
@@ -235,7 +222,6 @@ export default function Checkout() {
                       variant="contained"
                       onClick={handleSubmit}
                       sx={{ mt: 3, ml: 1 }}
-                      disabled = {hayStock}
                     >
                       {'Finalizar Compra'}
                     </Button>
