@@ -38,6 +38,7 @@ export default function AddressForm({values, setValues}) {
             variant="standard"
             onChange={(e) => setValues({ ...values, lastName: e.target.value })}
           />
+          {values.lastName.length === 0 && <small>Este campo es obligatorio</small>}
         </Grid>
         <Grid item xs={12}>
           <TextField
@@ -48,8 +49,9 @@ export default function AddressForm({values, setValues}) {
             fullWidth
             autoComplete="shipping address-line1"
             variant="standard"
-            onChange={(e) => setValues({ ...values, address: e.target.value })}
+            onChange={(e) => setValues({ ...values, address: e.target.value })}            
           />
+          {values.address.length === 0 && <small>Este campo es obligatorio</small>}
         </Grid>
         <Grid item xs={12}>
           <TextField
@@ -72,6 +74,7 @@ export default function AddressForm({values, setValues}) {
             variant="standard"
             onChange={(e) => setValues({ ...values, city: e.target.value })}
           />
+          {values.city.length === 0 && <small>Este campo es obligatorio</small>}
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -82,6 +85,7 @@ export default function AddressForm({values, setValues}) {
             variant="standard"
             onChange={(e) => setValues({ ...values, state: e.target.value })}
           />
+          {values.state.length === 0 && <small>Este campo es obligatorio</small>}
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -94,6 +98,7 @@ export default function AddressForm({values, setValues}) {
             variant="standard"
             onChange={(e) => setValues({ ...values, zip: e.target.value })}
           />
+          {values.zip.length === 0 && <small>Este campo es obligatorio</small>}
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -106,6 +111,7 @@ export default function AddressForm({values, setValues}) {
             variant="standard"
             onChange={(e) => setValues({ ...values, country: e.target.value })}
           />
+          {values.country.length === 0 && <small>Este campo es obligatorio</small>}
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel

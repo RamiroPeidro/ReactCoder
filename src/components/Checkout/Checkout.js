@@ -16,6 +16,9 @@ import AddressForm from './AddressForm';
 import Review from './Review';
 import { MiContext } from '../../context/MiContext'
 import Swal from 'sweetalert2';
+import { getFirestore } from '../../firebase/config';
+import firebase from 'firebase';
+import 'firebase/firestore';
 
 
 function Copyright() {
@@ -39,7 +42,7 @@ const theme = createTheme();
 
 export default function Checkout() {
 
-  const {carrito} = React.useContext(MiContext);
+  const {carrito, removeAllFromCart} = React.useContext(MiContext);
 
   const [values, setValues] = React.useState({
     firstName: '',
@@ -63,7 +66,17 @@ export default function Checkout() {
     return true;
   }
 
-  const [orden, setOrden] = React.useState();
+  const [orden, setOrden] = React.useState(); 
+
+  const [hayStock, setHayStock] = React.useState(false);
+
+  const handleError = (err) => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: err.message,
+    })
+  }
 
   const handleSubmit = (e) => {
 
@@ -72,8 +85,71 @@ export default function Checkout() {
         ...values
       },
       items: carrito,
-      total: carrito.reduce((acc, item) => acc + item.price, 0)
+      total: carrito.reduce((acc, item) => acc + item.price, 0),
+      date: firebase.firestore.Timestamp.fromDate(new Date())
     })
+
+    const db = getFirestore();
+    const orders = db.collection('orders');
+
+
+    carrito.forEach(item => {
+      const dockRef = db.collection('stock').doc(item.id);
+
+      dockRef.get()
+      .then((doc) => {
+          if(doc.data().stock >= item.cantidad){
+            setHayStock(true);
+            dockRef.update({
+              stock: doc.data().stock - item.amount
+            })
+        } else {
+          setHayStock(false);
+
+          Swal.fire({
+            title: 'Ooops..',
+            text: "Se acabo el stock del producto",
+            icon: 'warning',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Volver al inicio'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = '/';
+            }
+          })
+
+          // Swal.fire({
+          //   icon: 'error',
+          //   title: 'Oops...',
+          //   text: 'No hay suficiente stock',
+          // })
+          // removeAllFromCart();
+          
+        }
+      }) 
+    })
+
+
+    if(hayStock){
+
+    orders.add(orden)
+      .then((res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Compra realizada',
+          text: `Guarde su número de orden: ${res.id}`,
+        })
+      })
+
+      .catch((err) => handleError(err))
+
+
+      .finally(() => {
+        removeAllFromCart();
+      })
+    }
+
+
   }
 
   function getStepContent(step) {
@@ -92,18 +168,18 @@ export default function Checkout() {
   const handleNext = () => {
     if (!validateInputs(values)) return;
     setActiveStep(activeStep + 1);
-    handleSubmit();
   };
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
 
-
+ 
 
   return (
-    carrito.length > 0 ? (
+
     <>
+
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <AppBar
@@ -134,13 +210,13 @@ export default function Checkout() {
               ))}
             </Stepper>
             <React.Fragment>
-              {activeStep === steps.length ? (
+              {activeStep === steps.length  ? (
                 <React.Fragment>
                   <Typography variant="h5" gutterBottom>
                     Gracias por tu compra {`${orden.buyer.firstName}`}!
                   </Typography>
                   <Typography variant="subtitle1">
-                    Tu compra ha sido realizada con éxito. {`Se enviara a la direccion ${orden.buyer.address}`}
+                    Tu compra ha sido realizada con éxito. {`Se enviará a la dirección ${(orden.buyer.address).toUpperCase()}.`}
                   </Typography>
                 </React.Fragment>
               ) : (
@@ -153,13 +229,27 @@ export default function Checkout() {
                       </Button>
                     )}
 
+                    <>
+                      {activeStep === steps.length - 1 ? (
                     <Button
                       variant="contained"
-                      onClick={handleNext}
+                      onClick={handleSubmit}
                       sx={{ mt: 3, ml: 1 }}
+                      disabled = {hayStock}
                     >
-                      {activeStep === steps.length - 1 ? 'Finalizar Compra' : 'Siguiente'}
+                      {'Finalizar Compra'}
                     </Button>
+                      ) : (
+                        <Button
+                          onClick={handleNext}
+                          variant="contained"
+                          sx={{ mt: 3, ml: 1 }}
+                        >
+                          Siguiente
+                        </Button>
+                      )}
+                    </>
+
                   </Box>
                 </React.Fragment>
               )}
@@ -169,8 +259,5 @@ export default function Checkout() {
         </Container>
       </ThemeProvider>
     </>
-    )
-    : <h1>No hay productos</h1>
   )
-  
 }

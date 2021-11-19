@@ -11,7 +11,6 @@ export const ItemDetail = ({name, description, price, button, img, img2, img3, s
      
     const {goBack} = useHistory();
 
-    console.log(name)
 
     const [amount, setAmount] = useState(0);
 
