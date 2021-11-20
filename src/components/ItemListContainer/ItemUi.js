@@ -98,7 +98,7 @@ export const ItemUi = ({name, description, price, button, img, id}) => {
     const rotateX = useTransform(y, [-100, 100], [30, -30]);
     const rotateY = useTransform(x, [-100, 100], [30, -30]);
 
-    console.log(img)
+
     return (
         <CardWrapper>
             <CardContainer 

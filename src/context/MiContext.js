@@ -11,7 +11,6 @@ export const CartProvider = ({children}) => {
   
     const addToCart = (item) => {
       setCarrito([...carrito, item]);
-      console.log(carrito);
       localStorage.setItem('cart', JSON.stringify(carrito));
     }
   

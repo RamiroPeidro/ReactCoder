@@ -5,7 +5,7 @@ import React from 'react'
 import { ItemUi } from './ItemUi'
 
 export const ItemList = ({items}) => {
-    console.log(items)
+
     return (
         <div className="contenedor-general">
                 {items.map((item)=> (

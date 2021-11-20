@@ -16,8 +16,7 @@ export const NavBar = ({logo, link1, link2, link3, ruta1, ruta2, ruta3}) => {
         setMenu(!menu);
     }
     
-    const { calcularCantidad, amountOfItems } = useContext(MiContext);
-    console.log(calcularCantidad);
+    const { amountOfItems } = useContext(MiContext);
 
     return (
             <header>

@@ -11,7 +11,6 @@ import { MiContext } from '../../context/MiContext';
 export default function Review() {
 
   const {carrito} = React.useContext(MiContext)
-  console.log(carrito)
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>

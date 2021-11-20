@@ -11,7 +11,7 @@ import { CartProvider } from './context/MiContext';
 import { CartScreen } from './components/CartScreen/CartScreen';
 import Checkout from './components/Checkout/Checkout';
 // import { ItemUi } from './components/ItemListContainer/ItemUi';
-
+import {AboutUs} from './components/AboutUs/AboutUs';
 
 
 function App() {
@@ -49,6 +49,10 @@ function App() {
             
             <Route exact path="/checkout">
               <Checkout/>
+            </Route>
+
+            <Route exact path="/aboutus">
+              <AboutUs/>
             </Route>
 
             <Route path="*">
