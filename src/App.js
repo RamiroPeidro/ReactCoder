@@ -12,6 +12,7 @@ import { CartScreen } from './components/CartScreen/CartScreen';
 import Checkout from './components/Checkout/Checkout';
 // import { ItemUi } from './components/ItemListContainer/ItemUi';
 import {AboutUs} from './components/AboutUs/AboutUs';
+import {Season} from './components/Season/Season';
 
 
 function App() {
@@ -53,6 +54,10 @@ function App() {
 
             <Route exact path="/aboutus">
               <AboutUs/>
+            </Route>
+
+            <Route exact path="/season">
+              <Season/>
             </Route>
 
             <Route path="*">
