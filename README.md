@@ -18,6 +18,6 @@ Para el carrito de compra se utilizó firebase, para obtener en tiempo real la d
 
 ## GIF Demostrativo:
 
-
+![GIF](https://github.com/RamiroPeidro/reactCoder/blob/main/src/images/gif.gif)
 
 ## Link con la pagina terminada: 
